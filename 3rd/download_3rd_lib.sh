@@ -8,7 +8,7 @@ cd ffmpeg
 git apply ../ffmpeg.diff
 cd ..
 cp android_lf.h libarchive/libarchive/
-
+cp linux-syscall-support/lss breakpad/src/third_party/ -r
 
 # download other files
 

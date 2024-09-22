@@ -53,7 +53,6 @@ build_unrar() {
 }
 
 build_breakpad() {
-    cp linux-syscall-support/lss breakpad/src/third_party/ -r
     mkdir -p build_and/breakpad
     cd build_and/breakpad
     ../../breakpad/configure --host=aarch64-linux-android CC=aarch64-linux-android21-clang  CXX=aarch64-linux-android21-clang++ --prefix=`pwd`/../../prebuilt/google_breakpad --disable-tools

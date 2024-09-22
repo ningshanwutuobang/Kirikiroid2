@@ -1,0 +1,39 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ "new" ]
+  pull_request:
+    branches: [ "new" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: ./proj.android/gradle
+    - name: set up Android SDK
+      uses: actions/setup-android
+
+    - name: Fetch 3rd library
+      run:
+      - cd 3rd
+      - chmod +x ./download_3rd_lib.sh && ./download_3rd_lib.sh
+      - wget https://github.com/ningshanwutuobang/Kirikiroid2/releases/download/new_runnable/prebuilt.zip
+      - apt install unzip
+      - unzip prebuilt.zip
+      - cd ..
+      - wget https://github.com/ningshanwutuobang/Kirikiroid2/releases/download/new_runnable/Resources.zip
+      - unzip Resources.zip
+
+    - name: Build with Gradle
+      run:
+      - chmod +x proj.andorid/gradlew
+      - cd proj.android && ./gradlew build

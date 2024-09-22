@@ -120,7 +120,7 @@ public class MediaStoreHack {
             return resolver.insert(MediaStore.Files.getContentUri("external"), values);
         }
         else {
-            int imageId = filecursor.getInt(filecursor.getColumnIndex(BaseColumns._ID));
+            int imageId = filecursor.getInt(filecursor.getColumnIndexOrThrow(BaseColumns._ID));
             Uri uri = MediaStore.Files.getContentUri("external").buildUpon().appendPath(
                     Integer.toString(imageId)).build();
             filecursor.close();

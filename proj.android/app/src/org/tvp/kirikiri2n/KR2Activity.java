@@ -83,7 +83,7 @@ abstract class MediaStoreUtil {
             return resolver.insert(MediaStore.Files.getContentUri("external"), values);
         }
         else {
-            int imageId = filecursor.getInt(filecursor.getColumnIndex(BaseColumns._ID));
+            int imageId = filecursor.getInt(filecursor.getColumnIndexOrThrow(BaseColumns._ID));
             Uri uri = MediaStore.Files.getContentUri("external").buildUpon().appendPath(
                     Integer.toString(imageId)).build();
             filecursor.close();
@@ -326,10 +326,10 @@ public class KR2Activity extends Cocos2dxActivity implements ActivityCompat.OnRe
 
     static public String getDeviceId() {
 		TelephonyManager mgr = (TelephonyManager)GetInstance().getSystemService(Context.TELEPHONY_SERVICE);
-		String DeviceID = mgr.getDeviceId();
-		if(DeviceID != null) {
-		    return "DevID:" + DeviceID;
-		}
+		// String DeviceID = mgr.getDeviceId();
+		// if(DeviceID != null) {
+		//     return "DevID:" + DeviceID;
+		// }
 		String androidId = Secure.getString(GetInstance().getContentResolver(), Secure.ANDROID_ID);
     	if (null != androidId && androidId.length() > 8 &&
     			(!"9774d56d682e549c".equals(androidId)) ) {
