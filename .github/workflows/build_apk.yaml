@@ -25,7 +25,8 @@ jobs:
       uses: android-actions/setup-android@v3
       with:
         cmdline-tools-version: 8512546
-
+    - name: set up Android SDK
+      run: sdkmanager "ndk;21.0.6113669"
     - name: Fetch 3rd library
       run: |
         cd 3rd
