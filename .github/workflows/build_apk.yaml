@@ -31,7 +31,6 @@ jobs:
         cd 3rd
         chmod +x ./download_3rd_lib.sh && ./download_3rd_lib.sh
         wget https://github.com/ningshanwutuobang/Kirikiroid2/releases/download/new_runnable/prebuilt.zip
-        apt-get install unzip
         unzip prebuilt.zip
         cd ..
         wget https://github.com/ningshanwutuobang/Kirikiroid2/releases/download/new_runnable/Resources.zip
