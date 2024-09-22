@@ -11,6 +11,7 @@ android {
         targetSdkVersion PROP_TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"
+        ndkVersion "21.0.6113669"
 
         externalNativeBuild {
             if (PROP_BUILD_TYPE == 'ndk-build') {

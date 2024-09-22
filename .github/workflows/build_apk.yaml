@@ -39,4 +39,9 @@ jobs:
     - name: Build with Gradle
       run: |
         chmod +x proj.android/gradlew
-        cd proj.android && ./gradlew build
+        cd proj.android && ./gradlew assembleDebug && cd ..
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: DebugApk
+        path: proj.android/app/build/outputs/apk/debug
