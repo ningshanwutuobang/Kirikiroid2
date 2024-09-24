@@ -1,3 +1,5 @@
+[![Android CI](https://github.com/ningshanwutuobang/Kirikiroid2/actions/workflows/build_apk.yaml/badge.svg)](https://github.com/ningshanwutuobang/Kirikiroid2/actions/workflows/build_apk.yaml)
+
 Kirikiroid2 - A cross-platform port of Kirikiri2/KirikiriZ
 ==========================================================
 
@@ -32,10 +34,11 @@ or download the file from [release](https://github.com/ningshanwutuobang/Kirikir
 
 There are some steps left for a runnable apk file.
 - Using cocos studio compile ui/layout file *.csd. ( It can be downloaded from [release](https://github.com/ningshanwutuobang/Kirikiroid2/releases/))
-- Some files from a real apk (unzip). [Kirikiroid2](https://github.com/zeas2/Kirikiroid2/releases/download/1.3.9/Kirikiroid2_1.3.9.apk )
+- ~~Some files from a real apk (unzip). [Kirikiroid2](https://github.com/zeas2/Kirikiroid2/releases/download/1.3.9/Kirikiroid2_1.3.9.apk )~~ `default.cur`, fonts and some icons.
 - Fix some bugs because of incompatible version. (need to fix some bugs)
 
 Now it is runnable, but still some bugs left.
+
 
 Known issues
 ------------
