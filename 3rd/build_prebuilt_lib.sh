@@ -118,7 +118,7 @@ build_jpegturbo() {
 build_ffmpeg() {
     mkdir -p ${BUILD_DIR}/ffmpeg
     cd ${BUILD_DIR}/ffmpeg
-    ../../ffmpeg/configure --cross-prefix=$HOST- --cc=$CC --cxx=$CXX --arch=$ARCH --target-os=android --enable-pic --prefix=`pwd`/../../prebuilt/ffmpeg/${INSTALL_PATH} --disable-doc --disable-programs --disable-asm
+    ../../ffmpeg/configure --cross-prefix=$HOST- --cc=$CC --cxx=$CXX --arch=$ARCH --target-os=android --enable-pic --prefix=`pwd`/../../prebuilt/ffmpeg/${INSTALL_PATH} --disable-doc --disable-programs --disable-asm --extra-cflags=-DBIONIC_IOCTL_NO_SIGNEDNESS_OVERLOAD
     make
     make install -i # ignore set permisson error
     cd ../..
