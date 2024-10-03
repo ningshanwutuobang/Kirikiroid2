@@ -68,9 +68,10 @@ build_libogg() {
 
 # build libvorbis
 build_libvorbis() {
+    sed -i "s/-mno-ieee-fp//" libvorbis-1.3.7/configure
     mkdir -p ${BUILD_DIR}/libvorbis
     cd ${BUILD_DIR}/libvorbis
-    ../../libvorbis-1.3.7/configure --host=$HOST CC=$CC  CXX=$CXX --prefix=`pwd`/../../prebuilt/libvorbis/${INSTALL_PATH} --with-ogg=`pwd`/../../prebuilt/libogg/${INSTALL_PATH}  CFLAGS="-Wno-error=unused-command-line-argument -fPIC"
+    ../../libvorbis-1.3.7/configure --host=$HOST CC=$CC  CXX=$CXX --prefix=`pwd`/../../prebuilt/libvorbis/${INSTALL_PATH} --with-ogg=`pwd`/../../prebuilt/libogg/${INSTALL_PATH}  CFLAGS="-Wno-error=unused-command-line-argument -fPIC" --disable-oggtest
     make
     make install
     cd ../..
@@ -126,11 +127,11 @@ build_ffmpeg() {
 
 
 
-# build_opus
-# build_libogg
+build_opus
+build_libogg
 build_libvorbis
-# build_opusfile
-# build_unrar
-# build_breakpad
-# build_jpegturbo
-# build_ffmpeg
+build_opusfile
+build_unrar
+build_breakpad
+build_jpegturbo
+build_ffmpeg
