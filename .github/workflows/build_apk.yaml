@@ -34,10 +34,14 @@ jobs:
     #    wget https://github.com/ningshanwutuobang/Kirikiroid2/releases/download/new_runnable/prebuilt.zip
     #    unzip -uo prebuilt.zip
     #    cd ..
-    - name: Build 3rd library
-      run:
+    - name: Fetch 3rd library
+      run: |
         cd 3rd
         chmod +x ./download_3rd_lib.sh && ./download_3rd_lib.sh
+        cd ..
+    - name: Build with NDK
+      run: |
+        cd 3rd
         chmod +x ./build_prebuilt_lib.sh
         ./build_prebuilt_lib.sh
         ANDROID_ABI=armeabi-v7a ./build_prebuilt_lib.sh
