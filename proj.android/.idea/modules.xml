@@ -4,7 +4,13 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/proj.android.iml" filepath="$PROJECT_DIR$/.idea/modules/proj.android.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/proj.android.MyGame.iml" filepath="$PROJECT_DIR$/.idea/modules/app/proj.android.MyGame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/proj.android.MyGame.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/proj.android.MyGame.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/proj.android.MyGame.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/proj.android.MyGame.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/proj.android.MyGame.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/proj.android.MyGame.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-376329004/proj.android.libcocos2dx.iml" filepath="$PROJECT_DIR$/.idea/modules/-376329004/proj.android.libcocos2dx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1138985223/proj.android.libcocos2dx.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/1138985223/proj.android.libcocos2dx.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1138985223/proj.android.libcocos2dx.main.iml" filepath="$PROJECT_DIR$/.idea/modules/1138985223/proj.android.libcocos2dx.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1138985223/proj.android.libcocos2dx.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/1138985223/proj.android.libcocos2dx.unitTest.iml" />
     </modules>
   </component>
 </project>

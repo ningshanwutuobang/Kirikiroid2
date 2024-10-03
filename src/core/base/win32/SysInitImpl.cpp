@@ -1392,7 +1392,10 @@ void TVPAfterSystemInit()
 #endif
 	TVPGL_SSE2_Init();
 #endif
+
+#ifndef __i386__
 	TVPGL_ASM_Init();
+#endif
 
 	// timer precision
 	uint32_t prectick = 1;

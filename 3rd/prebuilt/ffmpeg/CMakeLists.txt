@@ -9,7 +9,7 @@ add_library( # Sets the name of the library.
 set_target_properties(
         ffmpeg_avdevice
         PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/libavdevice.a
+        ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/lib/libavdevice.a
 )
 
 add_library( # Sets the name of the library.
@@ -22,7 +22,7 @@ add_library( # Sets the name of the library.
 set_target_properties(
         ffmpeg_avfilter
         PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/libavfilter.a
+        ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/lib/libavfilter.a
 )
 
 add_library( # Sets the name of the library.
@@ -35,7 +35,7 @@ add_library( # Sets the name of the library.
 set_target_properties(
         ffmpeg_avformat
         PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/libavformat.a
+        ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/lib/libavformat.a
 )
 
 
@@ -49,7 +49,7 @@ add_library( # Sets the name of the library.
 set_target_properties(
         ffmpeg_avcodec
         PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/libavcodec.a
+        ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/lib/libavcodec.a
 )
 
 add_library( # Sets the name of the library.
@@ -62,7 +62,7 @@ add_library( # Sets the name of the library.
 set_target_properties(
         ffmpeg_avutil
         PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/libavutil.a
+        ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/lib/libavutil.a
 )
 
 add_library( # Sets the name of the library.
@@ -75,7 +75,7 @@ add_library( # Sets the name of the library.
 set_target_properties(
         ffmpeg_swresample
         PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/libswresample.a
+        ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/lib/libswresample.a
 )
 
 
@@ -89,7 +89,7 @@ add_library( # Sets the name of the library.
 set_target_properties(
         ffmpeg_swscale
         PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/libswscale.a
+        ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/lib/libswscale.a
 )
 
 add_library( # Sets the name of the library.
@@ -103,7 +103,7 @@ add_library( # Sets the name of the library.
 
 target_include_directories(ffmpeg
   PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/include
 )
 
 target_link_libraries(ffmpeg

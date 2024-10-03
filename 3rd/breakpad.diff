@@ -1,0 +1,50 @@
+diff --git a/src/common/android/testing/include/wchar.h b/src/common/android/testing/include/wchar.h
+index 85373fd2..8d36d895 100644
+--- a/src/common/android/testing/include/wchar.h
++++ b/src/common/android/testing/include/wchar.h
+@@ -53,6 +53,7 @@ static wchar_t inline wcstolower(wchar_t ch) {
+   return ch;
+ }
+ 
++#if 0
+ static int inline wcscasecmp(const wchar_t* s1, const wchar_t* s2) {
+   for (;;) {
+     wchar_t c1 = wcstolower(*s1);
+@@ -67,6 +68,7 @@ static int inline wcscasecmp(const wchar_t* s1, const wchar_t* s2) {
+     s2++;
+   }
+ }
++#endif
+ 
+ #ifdef __cplusplus
+ }  // extern "C"
+diff --git a/src/common/linux/memory_mapped_file.cc b/src/common/linux/memory_mapped_file.cc
+index 99362945..aad9e14f 100644
+--- a/src/common/linux/memory_mapped_file.cc
++++ b/src/common/linux/memory_mapped_file.cc
+@@ -42,6 +42,11 @@
+ #include "common/memory_range.h"
+ #include "third_party/lss/linux_syscall_support.h"
+ 
++#if defined(__ARM_EABI__) || defined(__i686__)
++#define sys_mmap mmap
++#endif
++
++
+ namespace google_breakpad {
+ 
+ MemoryMappedFile::MemoryMappedFile() {}
+diff --git a/src/common/memory_allocator.h b/src/common/memory_allocator.h
+index d28fbfc3..49368c32 100644
+--- a/src/common/memory_allocator.h
++++ b/src/common/memory_allocator.h
+@@ -49,6 +49,9 @@
+ #else
+ #include "third_party/lss/linux_syscall_support.h"
+ #endif
++#if defined(__ARM_EABI__) || defined(__i686__)
++    #define sys_mmap mmap
++#endif
+ 
+ namespace google_breakpad {
+ 

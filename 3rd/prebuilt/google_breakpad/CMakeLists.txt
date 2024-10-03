@@ -15,11 +15,11 @@ add_library( # Sets the name of the library.
 
 set_target_properties(${lib_name}
             PROPERTIES IMPORTED_LOCATION
-            ${CMAKE_CURRENT_SOURCE_DIR}/lib/lib${lib_name}.a 
+            ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/lib/lib${lib_name}.a
 )
 set_target_properties(${lib_name}
             PROPERTIES INTERFACE_INCLUDE_DIRECTORIES
-            ${CMAKE_CURRENT_SOURCE_DIR}/include
+            ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/include
 )
 
 add_library( # Sets the name of the library.
@@ -33,9 +33,9 @@ add_library( # Sets the name of the library.
 
 set_target_properties(${lib_name}_client
             PROPERTIES IMPORTED_LOCATION
-            ${CMAKE_CURRENT_SOURCE_DIR}/lib/lib${lib_name}_client.a 
+            ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/lib/lib${lib_name}_client.a
 )
 set_target_properties(${lib_name}_client
             PROPERTIES INTERFACE_INCLUDE_DIRECTORIES
-            ${CMAKE_CURRENT_SOURCE_DIR}/include
+            ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/include
 )

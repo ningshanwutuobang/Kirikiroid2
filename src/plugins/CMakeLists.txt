@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.6)
 project(kr2plugin)
 
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -fPIC")
+
 FILE(GLOB KR2PLUGIN_SRC_LIST
 
 "${CMAKE_CURRENT_SOURCE_DIR}/*.c"

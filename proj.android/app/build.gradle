@@ -37,7 +37,9 @@ android {
                 cmake {
                     version "3.10.2.4988404"
                     targets 'MyGame'
-                    arguments "-DCMAKE_FIND_ROOT_PATH=", "-DANDROID_STL=c++_static", "-DANDROID_TOOLCHAIN=clang", "-DANDROID_ARM_NEON=TRUE"
+                    arguments "-DCMAKE_FIND_ROOT_PATH=", "-DANDROID_STL=c++_static", "-DANDROID_TOOLCHAIN=clang", "-DANDROID_ARM_NEON=TRUE", "-DCMAKE_POSITION_INDEPENDENT_CODE=ON",
+                    "-DCMAKE_SHARED_LINKER_FLAGS_INIT=-Wl,-Bsymbolic"
+                    cppFlags "-frtti", "-fexceptions"
                     // cppFlags "-frtti", "-fexceptions","-fsigned-char"
                 }
             }

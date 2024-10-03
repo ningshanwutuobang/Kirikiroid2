@@ -1,5 +1,5 @@
 project(krkr)
-
+add_compile_options(-fPIC)
 add_subdirectory(base/7zip/CPP/ANDROID/7za/jni)
 
 FILE(GLOB KRKR_SRC_FILES 
@@ -55,6 +55,12 @@ list(REMOVE_ITEM KRKR_SRC_FILES
 	${CMAKE_CURRENT_SOURCE_DIR}/visual/LoadJXR.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/visual/LoadBPG.cpp
 )
+
+
+if (ANDROID_ABI STREQUAL "x86")
+    list(REMOVE_ITEM KRKR_SRC_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/visual/ARM/tvpgl_arm.cpp)
+endif()
 
 # message("KRKR_SRC_FILES=${KRKR_SRC_FILES}")
 

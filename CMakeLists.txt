@@ -36,6 +36,11 @@ set(CMAKE_MODULE_PATH ${COCOS2DX_ROOT_PATH}/cmake/Modules/)
 include(CocosBuildSet)
 add_subdirectory(${COCOS2DX_ROOT_PATH}/cocos ${ENGINE_BINARY_PATH}/cocos/core)
 
+
+if(ANDROID)
+    set(platform_spec_path_3rd android/${ANDROID_ABI})
+endif()
+
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/3rd/jxrlib)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/3rd/prebuilt/libjpeg-turbo)
 # add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/3rd/prebuilt/opencv)

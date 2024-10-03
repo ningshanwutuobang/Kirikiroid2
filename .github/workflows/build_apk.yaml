@@ -27,16 +27,26 @@ jobs:
         cmdline-tools-version:  10406996
     - name: set up Android NDK
       run: sdkmanager "ndk;21.0.6113669"
-    - name: Fetch 3rd library
-      run: |
+    # - name: Fetch 3rd library
+    #  run: |
+    #    cd 3rd
+    #    chmod +x ./download_3rd_lib.sh && ./download_3rd_lib.sh
+    #    wget https://github.com/ningshanwutuobang/Kirikiroid2/releases/download/new_runnable/prebuilt.zip
+    #    unzip -uo prebuilt.zip
+    #    cd ..
+    - name: Build 3rd library
+      run:
         cd 3rd
         chmod +x ./download_3rd_lib.sh && ./download_3rd_lib.sh
-        wget https://github.com/ningshanwutuobang/Kirikiroid2/releases/download/new_runnable/prebuilt.zip
-        unzip -uo prebuilt.zip
+        chmod +x ./build_prebuilt_lib.sh
+        ./build_prebuilt_lib.sh
+        ANDROID_ABI=armeabi-v7a ./build_prebuilt_lib.sh
+        ANDROID_ABI=x86 ./build_prebuilt_lib.sh
         cd ..
+    - name: Fetch Resources
+      run: |
         wget https://github.com/ningshanwutuobang/Kirikiroid2/releases/download/new_runnable/Resources.zip
         unzip -uo Resources.zip
-
     - name: Build with Gradle
       run: |
         chmod +x proj.android/gradlew

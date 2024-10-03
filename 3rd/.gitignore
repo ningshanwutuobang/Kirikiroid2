@@ -1,6 +1,6 @@
 *.o
 *.a
-build_and
+build_and*
 
 *.zip
 *.tar.gz*
@@ -19,4 +19,8 @@ prebuilt/*/include
 prebuilt/*/lib
 prebuilt/*/share
 prebuilt/*/bin
+prebuilt/*/*/include
+prebuilt/*/*/lib
+prebuilt/*/*/share
+prebuilt/*/*/bin
 

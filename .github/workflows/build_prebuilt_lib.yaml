@@ -1,4 +1,4 @@
-name: Android CI
+name: Build Prebuilt Library CI
 
 on:
   push:
@@ -35,7 +35,10 @@ jobs:
     - name: Build with NDK
       run: |
         cd 3rd
-        chmod +x ./build_prebuilt_lib.sh && ./build_prebuilt_lib.sh
+        chmod +x ./build_prebuilt_lib.sh
+        ./build_prebuilt_lib.sh
+        ANDROID_ABI=armeabi-v7a ./build_prebuilt_lib.sh
+        ANDROID_ABI=x86 ./build_prebuilt_lib.sh
         cd ..
     - uses: actions/upload-artifact@v4
       with:

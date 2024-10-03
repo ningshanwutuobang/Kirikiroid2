@@ -4,11 +4,22 @@
 git submodule init
 git submodule update --init
 git submodule sync
+
 cd ffmpeg 
 git apply ../ffmpeg.diff
 cd ..
+
 cp android_lf.h libarchive/libarchive/
+cd libarchive/
+git apply ../libarchive.diff
+cd ..
+
 cp linux-syscall-support/lss breakpad/src/third_party/ -r
+
+cd breakpad/
+git apply ../breakpad.diff
+cd ..
+
 
 # download other files
 

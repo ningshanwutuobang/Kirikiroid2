@@ -7,8 +7,6 @@ cmake_minimum_required(VERSION 3.6)
 
 project(7za)
 
-
-
 add_library(7za
   STATIC
   ../../../../CPP/7zip/Archive/7z/7zCompressionMode.cpp  
@@ -272,7 +270,7 @@ target_include_directories(
 # Needed since ANDROID 5, these programs run on android-16 (Android 4.1+)
 target_compile_options(7za 
     PUBLIC
-    -fPIE  -fexceptions -Wno-c++11-narrowing)
+    -fPIC -fexceptions -Wno-c++11-narrowing)
 # 
 # target_link_options(7za
 #     PUBLIC

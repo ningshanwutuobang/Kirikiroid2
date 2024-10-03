@@ -15,12 +15,12 @@ add_library( # Sets the name of the library.
 set_target_properties(
             turbojpep_static
             PROPERTIES IMPORTED_LOCATION
-           ${CMAKE_CURRENT_SOURCE_DIR}/lib/libturbojpeg.a)
+           ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/lib/libturbojpeg.a)
            
 set_target_properties(
             turbojpep_static
             PROPERTIES INTERFACE_INCLUDE_DIRECTORIES
-            ${CMAKE_CURRENT_SOURCE_DIR}/include
+            ${CMAKE_CURRENT_SOURCE_DIR}/${platform_spec_path_3rd}/include
 )
 
 # add_library(cocosjpeg STATIC ${SOURCE})
