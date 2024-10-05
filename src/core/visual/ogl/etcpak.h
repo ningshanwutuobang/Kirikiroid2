@@ -1,6 +1,9 @@
 #pragma once
 #include <functional>
 
+#include <stdlib.h>
+#include <cstdint>
+
 // from https://bitbucket.org/wolfpld/etcpak.git
 
 namespace ETCPacker {

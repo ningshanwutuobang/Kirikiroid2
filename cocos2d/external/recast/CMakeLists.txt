@@ -25,10 +25,10 @@ set(${target_name}_src
   fastlz/fastlz.c
 )
 
+add_compile_options(-fPIC)
 add_library(${target_name} STATIC
   ${${target_name}_src}
 )
-
 target_include_directories(${target_name} PUBLIC ..)
 
 set_target_properties(${target_name}

@@ -11,6 +11,8 @@
 
 #ifdef ENV_HAVE_WCTYPE_H
 #include <wctype.h>
+#elif defined(USE_UNICODE_FSTRING)
+#include <wctype.h>
 #else
 #define towupper(c) (c)  // FIXME
 int wcscmp(const wchar_t *s1, const wchar_t *s2);

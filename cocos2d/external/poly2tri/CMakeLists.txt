@@ -12,7 +12,7 @@ set(${target_name}_src
   sweep/cdt.cc
   sweep/advancing_front.cc
 )
-
+add_compile_options(-fPIC)
 add_library(${target_name} STATIC
   ${${target_name}_src}
 )

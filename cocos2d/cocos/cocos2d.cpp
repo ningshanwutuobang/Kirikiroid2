@@ -37,3 +37,12 @@ CC_DLL const char* cocos2dVersion()
 
 NS_CC_END
 
+
+// TODO  fix link error  unknown
+#if !defined(__ANDROID__) && defined(__linux__)
+extern "C" {
+#include "math.h"
+float __powf_finite(float x, float y) {return powf(x, y);}
+float __expf_finite(float x) {return expf(x);}
+}
+#endif

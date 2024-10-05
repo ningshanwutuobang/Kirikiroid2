@@ -514,7 +514,8 @@ public:
 		*/
 
 		_ensureCapacity();
-		int currentIndex = UnusedIndexStack.pop_back();
+		int currentIndex = UnusedIndexStack.back();
+		UnusedIndexStack.pop_back();
 		_tVectorList_Node &Node = PointerBuffPtr[currentIndex];
 		_tVectorList_Node &NextNode = PointerBuffPtr[IteratorNode.nextIndex];
 		Node.Data = _Val;

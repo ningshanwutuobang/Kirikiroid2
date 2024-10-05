@@ -10,7 +10,7 @@ set(${target_name}_src
   unzip.cpp
   ioapi_mem.cpp
 )
-
+add_compile_options(-fPIC)
 add_library(${target_name} STATIC
   ${${target_name}_src}
 )

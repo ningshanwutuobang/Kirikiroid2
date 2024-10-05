@@ -7,13 +7,23 @@ BUILD_DIR=build_and_${ANDROID_ABI}
 
 case $ANDROID_ABI in
     arm64-v8a)
+        SYSTEM=android
         ARCH=aarch64
         ;;
     armeabi-v7a)
+        SYSTEM=android
         ARCH=armv7a
         ;;
     x86)
+        SYSTEM=android
         ARCH=i686
+        ;;
+    x86_64)
+        SYSTEM=android
+        ARCH=x86_64
+        ;;
+    linux)
+        SYSTEM=linux
         ;;
     *)
         echo "not supported $arch"
@@ -21,20 +31,30 @@ case $ANDROID_ABI in
         ;;
 esac
 
-
-if [[ "$ARCH" == "armv7a" ]];
+if [[ "$SYSTEM" == "android" ]];
 then
-    ARCH2=arm
-    PLATFORM=androideabi21
-    HOST=$ARCH2-linux-androideabi
+    if [[ "$ARCH" == "armv7a" ]];
+    then
+        ARCH2=arm
+        PLATFORM=androideabi21
+        HOST=$ARCH2-linux-androideabi
+    else
+        ARCH2=$ARCH
+        PLATFORM=android21
+        HOST=$ARCH2-linux-android
+    fi
+    CROSS_PREFIX=$HOST-
+    CC=$ARCH-linux-$PLATFORM-clang
+    CXX=$ARCH-linux-$PLATFORM-clang++
 else
-    ARCH2=$ARCH
-    PLATFORM=android21
-    HOST=$ARCH2-linux-android
+    CC=clang
+    CXX=clang++
+    HOST=""
+    INSTALL_PATH=linux/x64
+    BUILD_DIR=build_linux
+    CROSS_PREFIX=""
 fi
 
-CC=$ARCH-linux-$PLATFORM-clang
-CXX=$ARCH-linux-$PLATFORM-clang++
 
 if [ "`which $CC`" = "" ];
 then
@@ -71,7 +91,7 @@ build_libvorbis() {
     sed -i "s/-mno-ieee-fp//" libvorbis-1.3.7/configure
     mkdir -p ${BUILD_DIR}/libvorbis
     cd ${BUILD_DIR}/libvorbis
-    ../../libvorbis-1.3.7/configure --host=$HOST CC=$CC  CXX=$CXX --prefix=`pwd`/../../prebuilt/libvorbis/${INSTALL_PATH} --with-ogg=`pwd`/../../prebuilt/libogg/${INSTALL_PATH}  CFLAGS="-Wno-error=unused-command-line-argument -fPIC" --disable-oggtest
+    ../../libvorbis-1.3.7/configure --host=$HOST CC=$CC  CXX=$CXX --prefix=`pwd`/../../prebuilt/libvorbis/${INSTALL_PATH} --with-ogg=`pwd`/../../prebuilt/libogg/${INSTALL_PATH}  CFLAGS="-fPIC" --disable-oggtest
     make
     make install
     cd ../..
@@ -88,7 +108,7 @@ build_opusfile() {
 
 build_unrar() {
     cd unrar
-    make -f ../makefile.unrar CXX=$CXX STRIP=$HOST-strip AR=$HOST-ar DESTDIR=`pwd`/../prebuilt/unrar/${INSTALL_PATH} lib
+    make -f ../makefile.unrar CXX=$CXX STRIP=${CROSS_PREFIX}strip AR=${CROSS_PREFIX}ar DESTDIR=`pwd`/../prebuilt/unrar/${INSTALL_PATH} lib
     mkdir -p ../prebuilt/unrar/${INSTALL_PATH}
     mv *.a ../prebuilt/unrar/${INSTALL_PATH}
     cd ..
@@ -118,7 +138,7 @@ build_jpegturbo() {
 build_ffmpeg() {
     mkdir -p ${BUILD_DIR}/ffmpeg
     cd ${BUILD_DIR}/ffmpeg
-    ../../ffmpeg/configure --cross-prefix=$HOST- --cc=$CC --cxx=$CXX --arch=$ARCH --target-os=android --enable-pic --prefix=`pwd`/../../prebuilt/ffmpeg/${INSTALL_PATH} --disable-doc --disable-programs --disable-asm --extra-cflags=-DBIONIC_IOCTL_NO_SIGNEDNESS_OVERLOAD
+    ../../ffmpeg/configure --cross-prefix=$CROSS_PREFIX --cc=$CC --cxx=$CXX --arch=$ARCH --target-os=$SYSTEM --enable-pic --prefix=`pwd`/../../prebuilt/ffmpeg/${INSTALL_PATH} --disable-doc --disable-programs --disable-asm --extra-cflags=-DBIONIC_IOCTL_NO_SIGNEDNESS_OVERLOAD
     make
     make install -i # ignore set permisson error
     cd ../..

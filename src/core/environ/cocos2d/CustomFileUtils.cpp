@@ -6,6 +6,8 @@
 #import "platform/apple/CCFileUtils-apple.h"
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 #include "platform/android/CCFileUtils-android.h"
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_LINUX
+#include "platform/linux/CCFileUtils-linux.h"
 #endif
 #ifdef MINIZIP_FROM_SYSTEM
 #include <minizip/unzip.h>
@@ -23,6 +25,8 @@ FileUtilsWin32
 FileUtilsApple
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 FileUtilsAndroid
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_LINUX
+FileUtilsLinux
 #endif
 FileUtilsInherit;
 

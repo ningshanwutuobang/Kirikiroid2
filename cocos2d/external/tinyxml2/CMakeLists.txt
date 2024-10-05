@@ -8,7 +8,7 @@ project(${lib_name})
 set(${target_name}_src
   tinyxml2.cpp
 )
-
+add_compile_options(-fPIC)
 add_library(${target_name} STATIC
   ${${target_name}_src}
 )

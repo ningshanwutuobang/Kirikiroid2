@@ -11,6 +11,7 @@
 #include <mutex>
 #include <vector>
 #include <memory>
+#include <functional>
 #include "VideoRenderer.h"
 
 #ifdef ANDROID

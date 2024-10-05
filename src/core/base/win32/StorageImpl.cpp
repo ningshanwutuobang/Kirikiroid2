@@ -140,6 +140,9 @@ void TVPListDir(const std::string &folder, std::function<void(const std::string&
 	}
 }
 
+#undef st_atime
+#undef st_mtime
+#undef st_ctime
 void TVPGetLocalFileListAt(const ttstr &name, const std::function<void(const ttstr&, tTVPLocalFileInfo*)>& cb) {
 	DIR *dirp;
 	struct dirent *direntp;

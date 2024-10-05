@@ -6,7 +6,7 @@
 #include <cstring>
 #include <iostream>
 #include <vector>
-
+#include <cstdint>
 //============================================================================
 //
 // Modulation data specifies weightings of colorA to colorB for each pixel

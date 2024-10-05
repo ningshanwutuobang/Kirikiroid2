@@ -9,6 +9,16 @@
 // configuration
 //---------------------------------------------------------------------------
 
+#include <ctype.h>
+#include <limits.h>
+#include <string.h>
+#include <stdarg.h>
+
+//#include <inttypes.h>
+#include <stdint.h>
+#include <math.h>
+// #include <cmath>
+#include <float.h>
 
 #include "tjsCommHead.h"
 #include <errno.h>
@@ -22,6 +32,7 @@
 #endif
 #define INTMAX_MAX		0x7fffffffffffffff
 #include <assert.h>
+#include <climits>
 
 /*
  * core/utils/cp932_uni.cpp
@@ -735,14 +746,6 @@ tjs_char *TJS_strrchr(const tjs_char *s, int c)
 	return ret;
 }
 
-#include <ctype.h>
-#include <limits.h>
-#include <string.h>
-#include <stdarg.h>
-//#include <inttypes.h>
-#include <stdint.h>
-#include <math.h>
-#include <float.h>
 
 /* Some useful macros */
 

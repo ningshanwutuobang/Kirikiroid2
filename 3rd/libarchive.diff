@@ -11,3 +11,16 @@ index 3ee6269f..a158d1a3 100644
  		set_statfs_transfer_size(t->current_filesystem, &sfs);
  #endif
  	}
+diff --git a/libarchive/test/test_fuzz.c b/libarchive/test/test_fuzz.c
+index b2654c4a..2c6e22d0 100644
+--- a/libarchive/test/test_fuzz.c
++++ b/libarchive/test/test_fuzz.c
+@@ -124,7 +124,7 @@ test_fuzz(const struct files *filesets)
+ 				newraw = realloc(rawimage, oldsize + size);
+ 				if (!assert(newraw != NULL))
+ 				{
+-					free(rawimage);
++					// free(rawimage);
+ 					rawimage = NULL;
+ 					free(tmp);
+ 					continue;

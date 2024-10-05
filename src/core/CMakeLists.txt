@@ -54,6 +54,7 @@ list(REMOVE_ITEM KRKR_SRC_FILES
 	${CMAKE_CURRENT_SOURCE_DIR}/visual/win32/VSyncTimingThread.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/visual/LoadJXR.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/visual/LoadBPG.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/utils/CCEmote.cpp
 )
 
 
@@ -61,6 +62,16 @@ if (ANDROID_ABI STREQUAL "x86")
     list(REMOVE_ITEM KRKR_SRC_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/visual/ARM/tvpgl_arm.cpp)
 endif()
+if (ANDROID)
+elseif(LINUX)
+    set(CMAKE_CXX_STANDARD 11)
+    list(REMOVE_ITEM KRKR_SRC_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/environ/android/AndroidUtils.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/visual/ARM/tvpgl_arm.cpp)
+    list(APPEND KRKR_SRC_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/environ/linux_special/LinuxCommon.cpp)
+endif()
+
 
 # message("KRKR_SRC_FILES=${KRKR_SRC_FILES}")
 
@@ -93,6 +104,7 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/visual/ARM
     ${CMAKE_CURRENT_SOURCE_DIR}/visual/win32
     ${CMAKE_CURRENT_SOURCE_DIR}/visual/RenderScript/rs
+    ${CMAKE_CURRENT_SOURCE_DIR}/emote
     ${CMAKE_CURRENT_SOURCE_DIR}/../plugins
     ${CMAKE_CURRENT_SOURCE_DIR}/../../3rd/prebuilt/libjpeg-turbo/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../../3rd/prebuilt/opencv/sdk/native/jni/include
@@ -119,12 +131,20 @@ target_compile_definitions(krkr
     -DTJS_TEXT_OUT_CRLF -D_7ZIP_ST
 )
 
+if (ANDROID)
 target_link_libraries(krkr 
     PUBLIC
     cocos2d ext_freetype  7za archive_static #  libbpg_static jxrlib_static
-    turbojpep_static opencv_core opencv_imgproc ffmpeg OpenAL onig ogg opus vorbis vorbisfile vorbisenc opusfile  breakpad  breakpad_client unrar lz4_static SDL2-static #  oboe # ext_tremolo 
-   
+    turbojpep_static opencv_core opencv_imgproc ffmpeg OpenAL onig ogg opus vorbis vorbisfile vorbisenc opusfile  breakpad  breakpad_client unrar lz4_static SDL2-static emotedriver#  oboe # ext_tremolo
 )
+elseif (LINUX)
+target_link_libraries(krkr
+    PUBLIC
+    cocos2d ext_freetype  7za archive_static #  libbpg_static jxrlib_static
+    turbojpep_static opencv_core opencv_imgproc ffmpeg OpenAL onig ogg opus vorbis vorbisfile vorbisenc opusfile  breakpad  breakpad_client unrar lz4_static SDL2 emotedriver#  oboe # ext_tremolo
+)
+endif()
+
 
 # target_compile_options(krkr -noWinconsistent-missing-override)
 

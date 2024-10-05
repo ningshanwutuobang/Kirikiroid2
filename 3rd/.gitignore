@@ -1,6 +1,6 @@
 *.o
 *.a
-build_and*
+build*
 
 *.zip
 *.tar.gz*
@@ -15,12 +15,12 @@ libogg-*
 libvorbis-*
 unrar
 
-prebuilt/*/include
-prebuilt/*/lib
-prebuilt/*/share
-prebuilt/*/bin
-prebuilt/*/*/include
-prebuilt/*/*/lib
-prebuilt/*/*/share
-prebuilt/*/*/bin
+prebuilt/*/include/*
+prebuilt/*/lib/*
+prebuilt/*/share/*
+prebuilt/*/bin/*
+prebuilt/*/*/include/*
+prebuilt/*/*/lib/*
+prebuilt/*/*/share/*
+prebuilt/*/*/bin/*
 

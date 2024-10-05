@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <functional>
+#include <cstdint>
 
 class XP3ArchiveRepackAsyncImpl;
 class XP3ArchiveRepackAsync {

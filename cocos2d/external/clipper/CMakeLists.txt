@@ -4,7 +4,7 @@ set(lib_name clipper)
 set(target_name ext_${lib_name})
 
 project(${lib_name})
-
+add_compile_options(-fPIC)
 add_library(${target_name} STATIC
   clipper.cpp
 )
