@@ -333,13 +333,15 @@ void TJSCompactStringHeap()
 			tjs_uint block_ind = TJSStringHeapLastCheckedFreeBlock;
 			tjs_int count = 0;
 
+			if (TJSStringHeapLastCheckedFreeBlock != 0) {
+
 			do
 			{
 				tjs_int freecount = 0;
 				tTJSVariantString * block = (*TJSStringHeapList)[block_ind];
 				for(tjs_int i = 0; i < HEAP_CAPACITY_INC; i++)
 				{
-					if(!(block[i].HeapFlag & HEAP_FLAG_USING))
+					if(block!=NULL && !(block[i].HeapFlag & HEAP_FLAG_USING))
 						freecount ++;
 				}
 
@@ -359,7 +361,7 @@ void TJSCompactStringHeap()
 				
 			} while(count < TJS_CHECK_FREE_BLOCK_MAX &&
 				block_ind != TJSStringHeapLastCheckedFreeBlock);
-
+			}
 			TJSStringHeapLastCheckedFreeBlock = block_ind;
 		}
 

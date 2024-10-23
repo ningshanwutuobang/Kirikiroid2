@@ -38,6 +38,7 @@ USING_NS_CC;
 extern unsigned int __page_size = getpagesize();
 
 void TVPPrintLog(const char *str) {
+	printf("kr2 debug info %s\n", str);
 	// __android_log_print(ANDROID_LOG_INFO, "kr2 debug info", "%s", str);
 }
 
@@ -66,15 +67,16 @@ void TVPForceSwapBuffer() {
 
 std::string TVPGetDeviceID()
 {
-    std::string ret;
-    return ret;
+    return "";
 }
 
 
 static std::string GetApkStoragePath() {
+	return FileUtils::getInstance()->getDefaultResourceRootPath();
 }
 
 static std::string GetPackageName() {
+	return "krkr";
 }
 
 // from unzip.cpp
@@ -158,8 +160,16 @@ static std::vector<std::string> &split(const std::string &s, char delim, std::ve
 }
 
 
+std::string _GetHomePath() {
+	char* p = getenv("HOME");
+	if (p!=NULL) {
+		return std::string(p);
+	}
+	return "/";
+}
+
 static std::string GetInternalStoragePath() {
-    return "";
+    return _GetHomePath();
 }
 
 
@@ -182,6 +192,7 @@ std::vector<std::string> TVPGetAppStoragePath() {
 
 std::vector<std::string> TVPGetDriverPath() {
 	std::vector<std::string> ret;
+	ret.push_back(_GetHomePath());
 	return ret;
 }
 
@@ -336,12 +347,82 @@ void TVPFetchSDCardPermission() {
 
 bool TVPCheckStartupPath(const std::string &path) {
 	// check writing permission first
+		// check writing permission first
+	int pos = path.find_last_of('/');
+	if (pos == path.npos) return false;
+	std::string parent = path.substr(0, pos);
+	std::string testPath = parent + cocos2d::StringUtils::format("/_check_save_%d.tmp", time(nullptr));
+	bool success = false;
+
+	FILE* f = fopen(testPath.c_str(), "wb");
+	if (f != NULL) {
+		success = true;
+		fclose(f);
+		TVPDeleteFile(testPath.c_str());
+	}
+	// if (JniHelper::getStaticMethodInfo(methodInfo, "org/tvp/kirikiri2n/KR2Activity", "isWritableNormal", "(Ljava/lang/String;)Z")) {
+	// 	jstring jstrPath = methodInfo.env->NewStringUTF(testPath.c_str());
+	// 	success = methodInfo.env->CallStaticBooleanMethod(methodInfo.classID, methodInfo.methodID, jstrPath);
+	// 	methodInfo.env->DeleteLocalRef(jstrPath);
+ //        TVPDeleteFile(testPath.c_str());
+#if 0
+		if (success) {
+			parent += "/savedata";
+			if (!TVPCheckExistentLocalFolder(parent)) {
+				TVPCreateFolders(parent);
+			}
+			jstrPath = methodInfo.env->NewStringUTF(parent.c_str());
+			success = methodInfo.env->CallStaticBooleanMethod(methodInfo.classID, methodInfo.methodID, jstrPath);
+			methodInfo.env->DeleteLocalRef(jstrPath);
+		}
+#endif
+	// }
+
+	if (!success) {
+		std::vector<std::string> paths;
+		// paths.emplace_back(GetInternalStoragePath());
+		GetExternalStoragePath(paths);
+		std::string pathlist;
+		for (const std::string &path : paths) {
+			pathlist += "\n";
+			pathlist += path;
+		}
+		std::string msg = LocaleConfigManager::GetInstance()->GetText("use_internal_path") + pathlist;
+#if 0
+		if (pathlist.size() > 0) {
+			size_t pos = msg.find("%1");
+			if (pos != msg.npos) {
+				msg = msg.replace(msg.begin() + pos, msg.begin() + pos + 2, pathlist.back());
+			}
+		}
+#endif
+		std::vector<ttstr> btns;
+		btns.emplace_back("OK");
+		TVPShowSimpleMessageBox(msg, LocaleConfigManager::GetInstance()->GetText("readonly_storage"), btns);
+		return false;
+#if 0
+		btns.push_back(LocaleConfigManager::GetInstance()->GetText("continue_run"));
+		bool isLOLLIPOP = IsLollipop();
+		if (isLOLLIPOP)
+			btns.push_back(LocaleConfigManager::GetInstance()->GetText("get_sdcard_permission"));
+		else
+			btns.push_back(LocaleConfigManager::GetInstance()->GetText("cancel"));
+		int result = TVPShowSimpleMessageBox(msg, LocaleConfigManager::GetInstance()->GetText("readonly_storage"), btns);
+		if (isLOLLIPOP && result == 1) {
+			TVPFetchSDCardPermission();
+		}
+		if (result != 0)
+			return false;
+#endif
+	}
+
 	return true;
 }
 
 bool TVPCreateFolders(const ttstr &folder)
 {
-	return false;
+	int ret = mkdir(folder.AsStdString().c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+	return ret == 0;
 }
 
 static bool TVPWriteDataToFileJava(const std::string &filename, const void* data, unsigned int size) {
@@ -403,13 +484,13 @@ void TVPShowIME(int x, int y, int w, int h) {
 void TVPProcessInputEvents() {}
 
 bool TVPDeleteFile(const std::string &filename) {
-
-	return false;
+	int ret = remove(filename.c_str());
+	return ret == 0;
 }
 
 bool TVPRenameFile(const std::string &from, const std::string &to) {
-
-	return false;
+	int ret = rename(from.c_str(), to.c_str());
+	return ret == 0;
 }
 
 tjs_uint32 TVPGetRoughTickCount32()

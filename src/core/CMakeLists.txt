@@ -141,7 +141,7 @@ elseif (LINUX)
 target_link_libraries(krkr
     PUBLIC
     cocos2d ext_freetype  7za archive_static #  libbpg_static jxrlib_static
-    turbojpep_static opencv_core opencv_imgproc ffmpeg OpenAL onig ogg opus vorbis vorbisfile vorbisenc opusfile  breakpad  breakpad_client unrar lz4_static SDL2 emotedriver#  oboe # ext_tremolo
+    turbojpep_static opencv_core opencv_imgproc ffmpeg OpenAL onig ogg opus vorbis vorbisfile vorbisenc opusfile  breakpad  breakpad_client unrar lz4_static SDL2 #  oboe # ext_tremolo
 )
 endif()
 

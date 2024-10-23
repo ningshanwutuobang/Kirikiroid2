@@ -1372,7 +1372,10 @@ struct _tFILE
 
 static void out(_tFILE *f, const tjs_char *s, size_t l)
 {
+// TODO: linux bug?
+#if CC_TARGET_PLATFORM != CC_PLATFORM_LINUX
     memcpy(f->p, s, l * sizeof(*f->p));
+#endif
     f->p += l;
 }
 

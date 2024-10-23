@@ -39,9 +39,13 @@ bool TVPAppDelegate::applicationDidFinishLaunching() {
 	auto director = Director::getInstance();
 	auto glview = director->getOpenGLView();
 	if (!glview) {
+#if CC_PLATFORM_WIN32 == CC_TARGET_PLATFORM ||  CC_PLATFORM_LINUX == CC_TARGET_PLATFORM
+		glview = GLViewImpl::create("kirikiri2 frame", true);
+#else
 		glview = GLViewImpl::create("kirikiri2 frame");
+#endif
 		director->setOpenGLView(glview);
-#if CC_PLATFORM_WIN32 == CC_TARGET_PLATFORM
+#if CC_PLATFORM_WIN32 == CC_TARGET_PLATFORM ||  CC_PLATFORM_LINUX == CC_TARGET_PLATFORM
 		glview->setFrameSize(960, 640);
 #endif
 	}

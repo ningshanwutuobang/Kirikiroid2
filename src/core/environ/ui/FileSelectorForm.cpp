@@ -358,6 +358,9 @@ void TVPBaseFileSelectorForm::onTitleClicked(cocos2d::Ref *owner) {
 }
 
 void TVPBaseFileSelectorForm::onBackClicked(cocos2d::Ref *owner) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_LINUX
+	if (ParentPath == "") ParentPath = "/";
+#endif
 	ListDir(ParentPath);
 }
 
